@@ -1,6 +1,5 @@
 package com.photographersite.controller;
 
-import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,8 @@ public class AlbumController {
     }
 
     @GetMapping("/albums")
-    public String getAlbums() {
+    public String getAlbums(Model page) {
+
         return "albums";
     }
 
