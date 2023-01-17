@@ -1,9 +1,6 @@
 package com.photographersite.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.List;
@@ -13,10 +10,10 @@ import java.util.List;
 @Getter
 public class Album {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    @Lob
-    private byte[] previewImage;
+    private String pathToImage;
     private String description;
     @OneToMany
     private List<Photo> photos;
