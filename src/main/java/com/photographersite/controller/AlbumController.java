@@ -12,8 +12,8 @@ public class AlbumController {
         return "album";
     }
 
-    @GetMapping("/albums/") //redirect from empty path variables
-    public String redirect() { //without it will be error 404
+    @GetMapping("/albums/") //redirect from empty path variables without, it will be error 404 without it
+    public String redirect() {
         return "forward:/albums";
     }
 
