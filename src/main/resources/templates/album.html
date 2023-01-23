@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-    album
+<table>
+    <tr th:each="photo : ${photos}">
+        <td><img th:src="@{'/cover/' + ${album.title}}"></td>
+    </tr>
+</table>
 </body>
 </html>
