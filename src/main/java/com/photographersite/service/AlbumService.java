@@ -14,8 +14,8 @@ public record AlbumService(AlbumRepository albumRepository) {
         return albumRepository.findAll();
     }
 
-    public Optional<Album> getAlbumById(Long id) {
-        return albumRepository.findById(id);
+    public Optional<Album> getAlbumById(String title) {
+        return albumRepository.findById(title);
     }
 
     public void saveAlbum(Album album) {
