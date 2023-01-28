@@ -1,0 +1,15 @@
+figure {
+    display: inline-block;
+    border: solid black;
+    width: min-content;
+}
+
+figcaption {
+    text-align: center;
+    background: gray;
+}
+
+img {
+    object-fit: fill;
+    display: block;
+}

@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/album.css}">
+    <script th:src="@{/script.js}" type="text/javascript"></script>
     <title>Title</title>
 </head>
 <body>
-<table>
-    <tr th:each="photo : ${photos}">
-        <td><img th:src="@{'/cover/' + ${album.title}}"></td>
-    </tr>
-</table>
+<figure onload="figureSize(this)" th:each="photo : ${photos}">
+    <figcaption th:text="${photo.title}"></figcaption>
+    <img onload="imageSize(this)" th:src="@{${photo.pathToImage}}">
+</figure>
 </body>
 </html>
