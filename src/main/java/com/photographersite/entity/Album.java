@@ -2,16 +2,12 @@ package com.photographersite.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.Hibernate;
 
-import java.util.Objects;
 import java.util.Set;
 
 
 @Entity
 @Getter
-@Setter
 public class Album {
     @Id
     @Column(name = "album_title")
@@ -21,12 +17,39 @@ public class Album {
     private String description;
     @OneToMany(mappedBy = "album", cascade = {CascadeType.ALL})
     private Set<Photo> photos;
+    private boolean visible;
 
-    public Album(String title, String coverPath, String description, Set<Photo> photos) {
+    public Album setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public Album setCoverPath(String coverPath) {
+        this.coverPath = coverPath;
+        return this;
+    }
+
+    public Album setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Album setPhotos(Set<Photo> photos) {
+        this.photos = photos;
+        return this;
+    }
+
+    public Album setVisible(boolean visible) {
+        this.visible = visible;
+        return this;
+    }
+
+    public Album(String title, String coverPath, String description, Set<Photo> photos, boolean visible) {
         this.title = title;
         this.coverPath = coverPath;
         this.description = description;
         this.photos = photos;
+        this.visible = visible;
     }
 
     public Album() {
@@ -36,14 +59,23 @@ public class Album {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+
         Album album = (Album) o;
-        return title != null && Objects.equals(title, album.title);
+
+        if (!title.equals(album.title)) return false;
+        if (!coverPath.equals(album.coverPath)) return false;
+        if (!description.equals(album.description)) return false;
+        return photos.equals(album.photos);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        int result = title.hashCode();
+        result = 31 * result + coverPath.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + (photos != null ? photos.hashCode(): 0);
+        return result;
     }
 
     @Override
