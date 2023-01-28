@@ -10,16 +10,18 @@
 <script ></script>
 <table>
     <tr>
-        <td>Выберите фото альбома</td>
-        <td>Добавьте архив с фото</td>
-        <td>Название альбома</td>
-        <td>Описание альбома</td>
+        <td>Choose cover image</td>
+        <td>Choose photos for album</td>
+        <td>Choose album title</td>
+        <td>Choose album description</td>
+        <td>Set visible</td>
     </tr>
     <tr>
-        <td><input id="image" type="file" name="image" accept="image/*" multiple></td>
-        <td><input id="zip" type="file" name="zip" accept=".zip" multiple></td>
+        <td><input id="cover" type="file" name="cover" accept="image/*"></td>
+        <td><input id="photos" type="file" name="photos" accept="image/*" multiple></td>
         <td><textarea id="title" name="title" rows="2" cols="20"></textarea></td>
         <td><textarea id="description" name="description" rows="4" cols="40"></textarea></td>
+        <td><input id="visible" name="visible" type="checkbox" checked></td>
     </tr>
 
 </table>
