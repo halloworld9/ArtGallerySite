@@ -18,6 +18,7 @@ import java.util.Set;
 public class AdminController {
     private final AlbumService albumService;
     private final SaverService saverService;
+
     public AdminController(AlbumService albumService, SaverService saverService) {
         this.albumService = albumService;
         this.saverService = saverService;
@@ -50,10 +51,10 @@ public class AdminController {
                 }
                 case CREATED_WITHOUT_COVER -> fillPhotosSet(photos, title, photosSet, album);
             }
-            album.setPhotos(photosSet)
-                    .setCoverPath(coverPath)
-                    .setTitle(title)
+            album.setTitle(title)
                     .setDescription(description)
+                    .setCoverPath(coverPath)
+                    .setPhotos(photosSet)
                     .setVisible(visible);
             albumService.saveAlbum(album);
         } catch (IOException e) {
