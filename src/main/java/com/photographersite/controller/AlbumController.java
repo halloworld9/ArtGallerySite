@@ -1,10 +1,15 @@
 package com.photographersite.controller;
 
+import com.photographersite.entity.Album;
+import com.photographersite.entity.Photo;
 import com.photographersite.service.AlbumService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Controller
@@ -17,6 +22,9 @@ public class AlbumController {
 
     @GetMapping(value = "/albums/{title}")
     public String getAlbum(@PathVariable String title, Model page) {
+        Album album = albumService.getAlbumById(title).get();
+        Set<Photo> photos = album.getPhotos() != null? album.getPhotos() : new HashSet<>();
+        page.addAttribute("photos", photos);
         return "album";
     }
 
@@ -27,7 +35,9 @@ public class AlbumController {
 
     @GetMapping("/albums")
     public String getAlbums(Model page) {
-        page.addAttribute("albums", albumService.getAlbums());
+        var albums = albumService.getAlbums();
+        albums.removeIf((x) -> !x.isVisible());
+        page.addAttribute("albums", albums);
         return "albums";
     }
 
