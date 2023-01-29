@@ -22,7 +22,7 @@ public class AlbumController {
 
     @GetMapping(value = "/albums/{title}")
     public String getAlbum(@PathVariable String title, Model page) {
-        Album album = albumService.getAlbumById(title).get();
+        Album album = albumService.getAlbumByTitle(title).get();
         Set<Photo> photos = album.getPhotos() != null? album.getPhotos() : new HashSet<>();
         page.addAttribute("photos", photos);
         return "album";
