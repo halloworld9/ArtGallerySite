@@ -10,7 +10,11 @@ import java.util.Set;
 @Getter
 public class Album {
     @Id
-    @Column(name = "album_title")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "album_id")
+    private Long id;
+
+    @Column(name = "title", unique = true)
     private String title;
     @Column(name = "cover_path")
     private String coverPath;
@@ -53,7 +57,6 @@ public class Album {
     }
 
     public Album() {
-
     }
 
     @Override
@@ -71,18 +74,23 @@ public class Album {
 
     @Override
     public int hashCode() {
-        int result = title.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + title.hashCode();
         result = 31 * result + coverPath.hashCode();
         result = 31 * result + description.hashCode();
-        result = 31 * result + (photos != null ? photos.hashCode(): 0);
+        result = 31 * result + (photos != null ? photos.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "title = " + title + ", " +
-                "coverPath = " + coverPath + ", " +
-                "description = " + description + ")";
+        return "Album{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", coverPath='" + coverPath + '\'' +
+                ", description='" + description + '\'' +
+                ", photos=" + photos +
+                ", visible=" + visible +
+                '}';
     }
 }
