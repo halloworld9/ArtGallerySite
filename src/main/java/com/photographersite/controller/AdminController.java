@@ -43,7 +43,7 @@ public class AdminController {
             var createAlbumState = saverService.saveAlbum(cover, photos, title);
             String coverPath = "/images/universal cover.png";
             Set<Photo> photosSet = new HashSet<>();
-            Album album = new Album();
+            Album album = new Album().setTitle(title); //set title for hashCode in photo
             switch (createAlbumState) {
                 case CREATED -> {
                     coverPath = "/photos/" + title + "/" + title + "." + cover.getContentType().substring(6);
@@ -51,8 +51,7 @@ public class AdminController {
                 }
                 case CREATED_WITHOUT_COVER -> fillPhotosSet(photos, title, photosSet, album);
             }
-            album.setTitle(title)
-                    .setDescription(description)
+            album.setDescription(description)
                     .setCoverPath(coverPath)
                     .setPhotos(photosSet)
                     .setVisible(visible);
