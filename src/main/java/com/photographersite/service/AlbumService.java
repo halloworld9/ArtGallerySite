@@ -14,12 +14,20 @@ public record AlbumService(AlbumRepository albumRepository) {
         return albumRepository.findAll();
     }
 
-    public Optional<Album> getAlbumById(String title) {
-        return albumRepository.findById(title);
+    public Optional<Album> getAlbumById(Long id) {
+        return albumRepository.findById(id);
     }
 
     public void saveAlbum(Album album) {
         albumRepository.save(album);
+    }
+
+    public Optional<Album> getAlbumByTitle(String title) {
+        return albumRepository.findByTitle(title);
+    }
+
+    public void deleteAlbum(String title) {
+        albumRepository.deleteAlbumsByTitle(title);
     }
 
 }
