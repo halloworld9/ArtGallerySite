@@ -8,7 +8,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public record AlbumService(AlbumRepository albumRepository) {
+public class AlbumService {
+    private final AlbumRepository albumRepository;
+
+    public AlbumService(AlbumRepository albumRepository) {
+        this.albumRepository = albumRepository;
+    }
 
     public List<Album> getAlbums() {
         return albumRepository.findAll();
