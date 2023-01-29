@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class Photo {
     public Photo() {
+
     }
     public Photo(String title, String pathToImage, Album album) {
         this.title = title;
@@ -24,7 +25,7 @@ public class Photo {
     @Column(name = "path_to_image", nullable = false)
     private String pathToImage;
     @ManyToOne
-    @JoinColumn(name = "album_title")
+    @JoinColumn(name = "album_id")
     private Album album;
 
 
