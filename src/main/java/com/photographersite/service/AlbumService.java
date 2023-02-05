@@ -32,7 +32,7 @@ public class AlbumService {
     }
 
     public void deleteAlbum(String title) {
-        albumRepository.deleteAlbumsByTitle(title);
+        albumRepository.deleteByTitle(title);
     }
 
 }
