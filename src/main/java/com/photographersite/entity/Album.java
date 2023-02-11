@@ -19,7 +19,7 @@ public class Album {
     @Column(name = "cover_path")
     private String coverPath;
     private String description;
-    @OneToMany(mappedBy = "album", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "album", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Set<Photo> photos;
     private boolean visible;
 

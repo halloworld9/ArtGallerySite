@@ -24,7 +24,7 @@ public class Photo {
     private String title;
     @Column(name = "path_to_image", nullable = false)
     private String pathToImage;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id")
     private Album album;
 
