@@ -11,7 +11,8 @@ async function uploadFile() {
 
     await fetch('admin', {
         method: "PUT",
-        body: formData
+        body: formData,
+        credentials: "same-origin"
     });
     window.location.reload();
 }
