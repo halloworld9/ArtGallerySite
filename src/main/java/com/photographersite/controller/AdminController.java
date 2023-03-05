@@ -40,6 +40,7 @@ public class AdminController {
     public ResponseEntity<?> saveAlbum(@RequestAttribute final MultipartFile cover, @RequestAttribute final MultipartFile[] photos
             , @RequestParam String title, @RequestParam String description, @RequestParam Boolean visible) {
         try {
+            title = title.replaceAll("[/:;*?<>|\"\\\\]", "");
             var createAlbumState = saverService.saveAlbum(cover, photos, title);
             String coverPath = "/images/universal cover.png";
             Set<Photo> photosSet = new HashSet<>();
